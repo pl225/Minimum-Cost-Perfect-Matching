@@ -103,6 +103,7 @@ list<int>::iterator Graph::removeEdgeAux(int v, int w) {
 list<int>::iterator Graph::removeEdge(int v, int w) {
 	
 	adjMat[w][v] = adjMat[v][w] = false;
+	edgeIndex[w][v] = edgeIndex[v][w] = -1;
 	
 	this->removeEdgeAux(w, v);
 	return this->removeEdgeAux(v, w);
