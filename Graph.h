@@ -2,6 +2,7 @@
 
 #include <list>
 #include <vector>
+#include <iostream>
 using namespace std;
 
 class Graph
@@ -32,8 +33,12 @@ public:
 	//Returns the adjacency list of a vertex
 	const list<int> & AdjList(int v) const;
 
+	list<int> & AdjListWithoutConst(int v);
+
 	//Returns the graph's adjacency matrix
 	const vector< vector<bool> > & AdjMat() const;
+
+	list<int>::iterator removeEdge(int v, int w);
 private:
 	//Number of vertices
 	int n;
@@ -51,4 +56,6 @@ private:
 
 	//Indices of the edges
 	vector< vector<int> > edgeIndex;
+
+	list<int>::iterator removeEdgeAux(int v, int w);
 };

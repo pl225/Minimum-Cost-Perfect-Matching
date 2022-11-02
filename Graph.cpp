@@ -79,3 +79,32 @@ const vector< vector<bool> > & Graph::AdjMat() const
 	return adjMat;
 }
 
+list<int> & Graph::AdjListWithoutConst(int v)
+{
+	if(v > n)
+		throw "Error: vertex does not exist";
+
+	return adjList[v];
+}
+
+list<int>::iterator Graph::removeEdgeAux(int v, int w) {
+	list<int>::iterator it = adjList[v].begin();
+
+	while (it != adjList[v].end()) {
+		if (*it == w) {
+			return adjList[v].erase(it);
+		}
+		it++;
+	}
+	printf("\nerro %d %d", v, w);
+	throw "Error: Edge does not exist";
+}
+
+list<int>::iterator Graph::removeEdge(int v, int w) {
+	
+	adjMat[w][v] = adjMat[v][w] = false;
+	
+	this->removeEdgeAux(w, v);
+	return this->removeEdgeAux(v, w);
+
+}
