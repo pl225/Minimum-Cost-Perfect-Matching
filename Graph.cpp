@@ -109,3 +109,8 @@ list<int>::iterator Graph::removeEdge(int v, int w) {
 	return this->removeEdgeAux(v, w);
 
 }
+
+void Graph::changeCostEdge(int v, int w, vector<double> &cost) {
+	int index = this->GetEdgeIndex(v, w);
+	cost[index] = 99999999999999;
+}

@@ -41,6 +41,8 @@ public:
 	const vector< vector<bool> > & AdjMat() const;
 
 	list<int>::iterator removeEdge(int v, int w);
+
+	void changeCostEdge(int v, int w, vector<double> &cost);
 private:
 	//Number of vertices
 	int n;
