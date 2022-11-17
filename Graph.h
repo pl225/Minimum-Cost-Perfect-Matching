@@ -25,6 +25,8 @@ public:
 	//Given the endpoints, returns the index
 	int GetEdgeIndex(int u, int v) const;
 
+	bool hasEdge (int u, int v) const { return edgeIndex[u][v] != -1; }
+
 	//Adds a new vertex to the graph
 	void AddVertex();
 	//Adds a new edge to the graph
