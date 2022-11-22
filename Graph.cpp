@@ -6,7 +6,8 @@ Graph::Graph(int n, const list< pair<int, int> > & edges):
 	adjMat(n, vector<bool>(n, false)),
 	adjList(n),
 	edges(),
-	edgeIndex(n, vector<int>(n, -1))
+	edgeIndex(n, vector<int>(n, -1)),
+	removed(n, vector<bool>(n, false))
 {
 	for(list< pair<int, int> >::const_iterator it = edges.begin(); it != edges.end(); it++)
 	{
@@ -42,10 +43,12 @@ void Graph::AddVertex()
 	for(int i = 0; i < n; i++)
 	{
 		adjMat[i].push_back(false);
+		removed[i].push_back(false);
 		edgeIndex[i].push_back(-1);
 	}
 	n++;
 	adjMat.push_back( vector<bool>(n, false) );
+	removed.push_back( vector<bool>(n, false) );
 	edgeIndex.push_back( vector<int>(n, -1) );
 	adjList.push_back( list<int>() );
 }
@@ -113,4 +116,5 @@ list<int>::iterator Graph::removeEdge(int v, int w) {
 void Graph::changeCostEdge(int v, int w, vector<double> &cost) {
 	int index = this->GetEdgeIndex(v, w);
 	cost[index] = 99999999999999;
+	removed[v][w] = removed[w][v] = true;
 }

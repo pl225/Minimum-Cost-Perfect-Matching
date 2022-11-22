@@ -27,6 +27,8 @@ public:
 
 	bool hasEdge (int u, int v) const { return edgeIndex[u][v] != -1; }
 
+	bool isRemovedEdge(int u, int v) const { return removed[u][v]; }
+
 	//Adds a new vertex to the graph
 	void AddVertex();
 	//Adds a new edge to the graph
@@ -60,6 +62,9 @@ private:
 
 	//Indices of the edges
 	vector< vector<int> > edgeIndex;
+
+	//Removed matrix
+	vector< vector<bool> > removed;
 
 	list<int>::iterator removeEdgeAux(int v, int w);
 };
